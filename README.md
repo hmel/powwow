@@ -1,7 +1,7 @@
 powwow
 ======
 
-An HTTPS client to an encrypted event store.
+An encrypted event store client for lamassu/merrimack.
 
 This library uses the familiar pub/sub interface, but all topics and content are encrypted 
 before being sent to the event store.
