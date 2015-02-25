@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^2.9.12",
     "crc": "^3.2.1",
+    "geval": "^2.1.1",
     "pad": "0.0.8"
   }
 }

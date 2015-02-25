@@ -94,4 +94,19 @@ describe('Queue', function () {
     var rec = {buy: 'me', some: 'peanuts'}
     assert.throws(R.partial(queue.publish, '2-test2', rec), E.ReadOnlyError)
   })
+
+  it('should sync a single record and notify subscriber', function (done) {
+    function subscription (res) {
+      assert.equal(res.dont, 'care')
+      done()
+    }
+
+    queue.subscribe('2-test2', subscription)
+    var rec = {i: 2, rec: {dont: 'care', never: 'get back'}}
+    var diff = {
+      queueName: '2-test2',
+      diff: [rec]
+    }
+    queue.sync([diff])
+  })
 })
