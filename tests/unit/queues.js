@@ -95,6 +95,26 @@ describe('Queue', function () {
     assert.throws(R.partial(queue.publish, '2-test2', rec), E.ReadOnlyError)
   })
 
+  it('should sync a single record', function () {
+    var rec = {i: 2, rec: {cause: 'its', root: 'root root'}}
+    var diff = {
+      queueName: '2-test2',
+      diff: [rec]
+    }
+    queue.sync([diff])
+    assert.equal(queue.get('2-test2', 2).root, 'root root')
+
+    // Wait until file is saved
+    return Promise.delay(10)
+    .then(function () {
+      queue.clear()
+      return queue.load()
+    })
+    .then(function () {
+      assert.equal(queue.get('2-test2', 2).root, 'root root')
+    })
+  })
+
   it('should sync a single record and notify subscriber', function (done) {
     function subscription (res) {
       assert.equal(res.dont, 'care')
