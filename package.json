@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/lamassu/powwow",
   "dependencies": {
-    "bacon": "0.0.1",
     "bluebird": "^2.9.12",
-    "steno": "^0.3.2"
+    "crc": "^3.2.1",
+    "pad": "0.0.8"
   }
 }
